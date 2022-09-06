@@ -14,7 +14,6 @@ class Maps:
         A class keeping every possible gamemode and map, and lets the player select 
         the played map for statistical analysis
         """
-
         self.escort = ['Circuit Royal', 
                        'Dorado', 
                        'Havana', 
