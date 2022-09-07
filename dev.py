@@ -1,77 +1,56 @@
 import os
-import platform
+import time
 import msvcrt
+from data import DataStructures as ds
 
 
-"""
-Ideas:
+class Menu:
 
-if not studentName.isalpha():
-    print("Only letters are allowed!")
+    def selectOptionFromTable(self, choiceList: list) -> int:
+        os.system('cls')
+        asciiInt = 97
+        optionList = []
 
+        # Make sure input is only ascii (char.isalpha())
+        for option in choiceList:
+            print("{}  -  {}".format(chr(asciiInt), option))
+            optionList.append(option)
+            asciiInt += 1
 
-Add current date and time when writing to file
-"""
+        selection = int(ord(msvcrt.getch())) - 97
+        while(selection < 0 or selection > len(optionList)-1):
+            selection = int(ord(msvcrt.getch())) - 97
+        return optionList[selection] 
 
-class Maps:
-    def __init__(self):
-        """
-        A class keeping every possible gamemode and map, and lets the player select 
-        the played map for statistical analysis
-        """
-        self.escort = ['Circuit Royal', 
-                       'Dorado', 
-                       'Havana', 
-                       'Junkertown', 
-                       'Rialto', 
-                       'Route 66',
-                       'Gothenburg']
+    def userMenu(self):
+        menuOptions = ['Register Match', 'Exit'] 
+        while(True):
+            menuSelection = self.selectOptionFromTable(menuOptions)
 
-        self.hybrid = ['Blizzard World', 
-                       'Eichenwalde', 
-                       'Hollywood', 
-                       'King\'s Row', 
-                       'Midtown', 
-                       'Numbani', 
-                       'Paraiso']
+            match menuSelection:
+                case 'Register Match':
+                    self.registerMatch()
+                case 'Exit':
+                    print("Thank you for using this program!")
+                    break
 
-        self.control = ['Busan', 
-                        'Ilios', 
-                        'Lijiang Tower', 
-                        'Nepal', 
-                        'Oasis']
+    def registerMatch(self):
+            selectedMode = self.selectOptionFromTable(ds.maps)
+            selectedMap = self.selectOptionFromTable(ds.maps[selectedMode])
+            selectedRole = self.selectOptionFromTable(ds.heroes)
+            selectedHero = self.selectOptionFromTable(ds.heroes[selectedRole])
+            selectedResult = self.selectOptionFromTable(ds.results)
 
-        self.push = ['Colosseo', 
-                     'New Queen Street', 
-                     'Portugal']
+            print("Written to output.txt: {} | {} | {} | {} | {}".format(selectedMode, selectedMap, selectedRole, selectedHero, selectedResult))
+            time.sleep(3)
 
+    def writeToFile(self):
+        pass
+        # Add current date and time to input string
 
-
-        self.mode = [self.escort, self.hybrid, self.control, self.push]
-        self.modes = ['Escort', 'Hybrid', 'Control', 'Push']
-
-    
-    def select(self, alt):
-        self.clear()
-        modeNumber = 97
-        for m in alt:
-            print("{}  -  {}".format(chr(modeNumber), m))
-            modeNumber += 1
-        return int(ord(msvcrt.getch())) - 97
-
-    def chooseGamemode(self):
-        gamemode = self.select(self.modes)
-        mapchoice = self.select(self.mode[gamemode])
-        print(self.mode[gamemode][mapchoice]) 
-
-    def clear(self):
-        if platform.system() == 'Linux':
-            os.system('clear')
-        elif platform.system() == 'Windows':
-            os.system('cls')
-        
 
 if __name__ == "__main__":
-    maps = Maps()
-    maps.chooseGamemode()
+    menu = Menu()
+    menu.userMenu()
+
 
