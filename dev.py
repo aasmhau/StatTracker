@@ -1,9 +1,14 @@
 import os
 import platform
+import msvcrt
 
 
 """
 Ideas:
+
+if not studentName.isalpha():
+    print("Only letters are allowed!")
+
 
 Add current date and time when writing to file
 """
@@ -44,21 +49,20 @@ class Maps:
 
         self.mode = [self.escort, self.hybrid, self.control, self.push]
         self.modes = ['Escort', 'Hybrid', 'Control', 'Push']
-        
-    def chooseGamemode(self):
+
+    
+    def select(self, alt):
         self.clear()
         modeNumber = 97
-        for mode_ in self.modes:
-            print("{}  -  {}".format(chr(modeNumber), mode_))
+        for m in alt:
+            print("{}  -  {}".format(chr(modeNumber), m))
             modeNumber += 1
-        gamemode = int(ord(input(("> ")))) - 97 
+        return int(ord(msvcrt.getch())) - 97
 
-        self.clear()
-        mapNumber = 97
-        for map_ in self.mode[gamemode]:
-            print("{}  -  {}".format(chr(mapNumber), map_))
-            mapNumber += 1
-        mapSelect = int(ord(input(("> ")))) - 97
+    def chooseGamemode(self):
+        gamemode = self.select(self.modes)
+        mapchoice = self.select(self.mode[gamemode])
+        print(self.mode[gamemode][mapchoice]) 
 
     def clear(self):
         if platform.system() == 'Linux':
