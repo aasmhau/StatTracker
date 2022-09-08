@@ -1,31 +1,35 @@
 import os
-import time
 import msvcrt
 from data import DataStructures as ds
 
 
 class Menu:
 
-    def selectOptionFromTable(self, choiceList: list) -> int:
+    def displayOptions(self, optionList: list) -> int:
         os.system('cls')
         asciiInt = 97
-        optionList = []
-
-        # Make sure input is only ascii (char.isalpha())
-        for option in choiceList:
+        for option in optionList:
             print("{}  -  {}".format(chr(asciiInt), option))
-            optionList.append(option)
             asciiInt += 1
+        print("Esc  -  Cancel\nBackspace  -  Go back")
 
+
+    def makeSelection(self, optionList):
         selection = int(ord(msvcrt.getch())) - 97
+        if selection == -89: # Backspace
+            return 'backspace'
+        if selection == -70: # Esc
+            return 'esc'
         while(selection < 0 or selection > len(optionList)-1):
             selection = int(ord(msvcrt.getch())) - 97
         return optionList[selection] 
 
+
     def userMenu(self):
         menuOptions = ['Register Match', 'Exit'] 
         while(True):
-            menuSelection = self.selectOptionFromTable(menuOptions)
+            self.displayOptions(menuOptions)
+            menuSelection = self.makeSelection(menuOptions)
 
             match menuSelection:
                 case 'Register Match':
@@ -34,15 +38,11 @@ class Menu:
                     print("Thank you for using this program!")
                     break
 
-    def registerMatch(self):
-            selectedMode = self.selectOptionFromTable(ds.maps)
-            selectedMap = self.selectOptionFromTable(ds.maps[selectedMode])
-            selectedRole = self.selectOptionFromTable(ds.heroes)
-            selectedHero = self.selectOptionFromTable(ds.heroes[selectedRole])
-            selectedResult = self.selectOptionFromTable(ds.results)
 
-            print("Written to output.txt: {} | {} | {} | {} | {}".format(selectedMode, selectedMap, selectedRole, selectedHero, selectedResult))
-            time.sleep(3)
+    def registerMatch(self): # Make it possible to go back with backspace, or cancel with escape
+            self.displayOptions(ds.maps)
+            selectedMode = self.makeSelection(ds.maps)
+
 
     def writeToFile(self):
         pass
