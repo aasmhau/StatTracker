@@ -8,7 +8,7 @@ class Menu:
     def __init__(self):
         self.menuOptions = ['Register Match', 'Exit'] 
 
-    def displayOptions(self, optionList: list) -> int:
+    def displayAndPickFromTable(self, optionList: list) -> int:
         os.system('cls')
         asciiInt = 97
         for option in optionList:
@@ -16,8 +16,6 @@ class Menu:
             asciiInt += 1
         print("Esc  -  Cancel\nBackspace  -  Go back")
 
-
-    def makeSelection(self, optionList): # Build entire program with recursion
         selection = int(ord(msvcrt.getch())) - 97
         if selection == -89: # Backspace
             self.userMenu()
@@ -30,8 +28,7 @@ class Menu:
 
     def userMenu(self):
         while(True):
-            self.displayOptions(self.menuOptions)
-            menuSelection = self.makeSelection(self.menuOptions)
+            menuSelection = self.displayAndPickFromTable(self.menuOptions)
 
             match menuSelection:
                 case 'Register Match':
@@ -42,14 +39,7 @@ class Menu:
 
 
     def registerMatch(self): # Make it possible to go back with backspace, or cancel with escape
-            self.displayOptions(ds.maps)
-            selectedMode = self.makeSelection(ds.maps)
-
-
-    def writeToFile(self):
-        pass
-        # Add current date and time to input string
-
+        selectedMode = self.displayAndPickFromTable(ds.maps)
 
 if __name__ == "__main__":
     menu = Menu()
