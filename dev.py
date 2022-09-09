@@ -20,8 +20,6 @@ class Menu:
             asciiInt += 1
 
         selection = int(ord(msvcrt.getch())) - 97
-        if selection == -89: # Backspace
-            return -1
         if selection == -70: # Esc
             self.userMenu()
         while(selection < 0 or selection > len(optionList)-1):
@@ -42,33 +40,14 @@ class Menu:
 
 
     def registerMatch(self): # Make it possible to go back with backspace, or cancel with escape
-        print(self.selectMode())
-        time.sleep(3)
-
-    def selectMode(self):
         selectedMode = self.displayAndPickFromTable(ds.maps)
-        if selectedMode == -1:
-            self.registerMatch()
-        return selectedMode + self.selectMap(selectedMode)
-
-    def selectMap(self, mode): 
-        selectedMap = self.displayAndPickFromTable(ds.maps[mode]) 
-        if selectedMap == -1:
-            self.selectMode()
-        return selectedMap + self.selectRole(mode)
-
-    def selectRole(self, mode):
+        selectedMap = self.displayAndPickFromTable(ds.maps[selectedMode])
         selectedRole = self.displayAndPickFromTable(ds.heroes)
-        if selectedRole == -1:
-            self.selectMap(mode)
-        return selectedRole + self.selectHero(selectedRole)
+        selectedHero = self.displayAndPickFromTable(ds.heroes[selectedRole])
+        
 
-    def selectHero(self, role):
-        selectedHero = self.displayAndPickFromTable(ds.heroes[role])
-        if selectedHero == -1:
-            self.selectRole(role)
-        return selectedHero
-
+        print("{}-{}-{}-{}".format(selectedMode, selectedMap, selectedRole, selectedHero))
+        time.sleep(2)
 
 
 if __name__ == "__main__":
