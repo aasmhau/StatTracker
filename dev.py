@@ -1,11 +1,13 @@
 import os
 import time
+import sys
 import msvcrt
+
 
 class Menu:
 
     def __init__(self):
-        self.menuOptions = ['Register Match', 'Exit']
+        self.menu_options = ['Register Match', 'Exit']
         self.escort = ['Circuit Royal',
                        'Dorado',
                        'Havana',
@@ -75,7 +77,7 @@ class Menu:
                        'DPS': self.dps, 'Support': self.support}
         self.results = ['Victory', 'Defeat', 'Draw']
 
-    def displayAndPickFromTable(self, option_list: list) -> int:
+    def display_and_pick_from_table(self, option_list: list) -> int:
         os.system('cls')
         ascii_int = 97
         current_options = []
@@ -87,34 +89,35 @@ class Menu:
 
         selection = int(ord(msvcrt.getch())) - 97
         if selection == -70:  # Esc
-            self.userMenu()
+            self.user_menu()
         while (selection < 0 or selection > len(option_list)-1):
             selection = int(ord(msvcrt.getch())) - 97
         return current_options[selection]
 
-    def userMenu(self):
+    def user_menu(self):
         while True:
-            menu_selection = self.displayAndPickFromTable(self.menuOptions)
+            menu_selection = self.display_and_pick_from_table(
+                self.menu_options)
 
             if menu_selection == 'Register Match':
-                self.registerMatch()
+                self.register_match()
             elif menu_selection == 'Exit':
                 print("Thank you for using this program!")
-                exit(0)
+                sys.exit(0)
 
     # Make it possible to go back with backspace, or cancel with escape
-    def registerMatch(self):
-        selected_mode = self.displayAndPickFromTable(self.maps)
-        selected_map = self.displayAndPickFromTable(self.maps[selected_mode])
-        selected_role = self.displayAndPickFromTable(self.heroes)
-        selected_hero = self.displayAndPickFromTable(
+    def register_match(self):
+        selected_mode = self.display_and_pick_from_table(self.maps)
+        selected_map = self.display_and_pick_from_table(
+            self.maps[selected_mode])
+        selected_role = self.display_and_pick_from_table(self.heroes)
+        selected_hero = self.display_and_pick_from_table(
             self.heroes[selected_role])
 
-        print("{}-{}-{}-{}".format(selected_mode,
-              selected_map, selected_role, selected_hero))
+        print(f"{selected_mode}-{selected_map}-{selected_role}-{selected_hero}")
         time.sleep(2)
 
 
 if __name__ == "__main__":
     menu = Menu()
-    menu.userMenu()
+    menu.user_menu()
