@@ -5,6 +5,7 @@ import msvcrt
 
 
 class Menu:
+    ''' Class that stores data and lets you register a match'''
 
     def __init__(self):
         self.menu_options = ['Register Match', 'Exit']
@@ -78,6 +79,7 @@ class Menu:
         self.results = ['Victory', 'Defeat', 'Draw']
 
     def display_and_pick_from_table(self, option_list: list) -> int:
+        ''' Displays values from table, returns picked option from user'''
         os.system('cls')
         ascii_int = 97
         current_options = []
@@ -85,7 +87,7 @@ class Menu:
         for option in option_list:
             current_options.append(option)
             print("{}  -  {}".format(chr(ascii_int), option))
-            asciiInt += 1
+            ascii_int += 1
 
         selection = int(ord(msvcrt.getch())) - 97
         if selection == -70:  # Esc
@@ -95,6 +97,7 @@ class Menu:
         return current_options[selection]
 
     def user_menu(self):
+        ''' Initialises the user_menu '''
         while True:
             menu_selection = self.display_and_pick_from_table(
                 self.menu_options)
@@ -107,6 +110,7 @@ class Menu:
 
     # Make it possible to go back with backspace, or cancel with escape
     def register_match(self):
+        ''' Runs the register match option '''
         selected_mode = self.display_and_pick_from_table(self.maps)
         selected_map = self.display_and_pick_from_table(
             self.maps[selected_mode])
