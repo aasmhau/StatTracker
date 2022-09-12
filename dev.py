@@ -95,13 +95,13 @@ class Menu:
 
     def userMenu(self):
         while True:
-            menuSelection = self.displayAndPickFromTable(self.menuOptions)
-            match menuSelection:
-                case 'Register Match':
-                    self.registerMatch()
-                case 'Exit':
-                    print("Thank you for using this program!")
-                    exit(0)
+            menu_selection = self.displayAndPickFromTable(self.menuOptions)
+
+            if menu_selection == 'Register Match':
+                self.registerMatch()
+            elif menu_selection == 'Exit':
+                print("Thank you for using this program!")
+                exit(0)
 
     # Make it possible to go back with backspace, or cancel with escape
     def registerMatch(self):
