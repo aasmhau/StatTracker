@@ -2,76 +2,78 @@ import os
 import time
 import msvcrt
 
+
 class Menu:
 
     def __init__(self):
         self.menuOptions = ['Register Match', 'Exit']
         self.escort = ['Circuit Royal',
-              'Dorado',
-              'Havana',
-              'Junkertown',
-              'Rialto',
-              'Route 66',
-              'Gothenburg']
+                       'Dorado',
+                       'Havana',
+                       'Junkertown',
+                       'Rialto',
+                       'Route 66',
+                       'Gothenburg']
 
         self.hybrid = ['Blizzard World',
-              'Eichenwalde',
-              'Hollywood',
-              'King\'s Row',
-              'Midtown',
-              'Numbani',
-              'Paraiso']
+                       'Eichenwalde',
+                       'Hollywood',
+                       'King\'s Row',
+                       'Midtown',
+                       'Numbani',
+                       'Paraiso']
 
         self.control = ['Busan',
-               'Ilios',
-               'Lijiang Tower',
-               'Nepal',
-               'Oasis']
+                        'Ilios',
+                        'Lijiang Tower',
+                        'Nepal',
+                        'Oasis']
 
         self.push = ['Colosseo',
-            'New Queen Street',
-            'Portugal']
+                     'New Queen Street',
+                     'Portugal']
 
         self.tank = ['D.Va',
-            'Doomfist',
-            'Junker Queen',
-            'Orisa',
-            'Reinhardt',
-            'Roadhog',
-            'Sigma',
-            'Winston',
-            'Wrecking Ball',
-            'Zarya']
+                     'Doomfist',
+                     'Junker Queen',
+                     'Orisa',
+                     'Reinhardt',
+                     'Roadhog',
+                     'Sigma',
+                     'Winston',
+                     'Wrecking Ball',
+                     'Zarya']
 
         self.dps = ['Ashe',
-           'Bastion',
-           'Cassidy',
-           'Echo',
-           'Genji',
-           'Hanzo',
-           'Junkrat',
-           'Mei',
-           'Phara',
-           'Reaper',
-           'Soldier: 76',
-           'Sojourn',
-           'Sombra',
-           'Symmetra',
-           'Torbjorn',
-           'Tracer',
-           'Widowmaker']
+                    'Bastion',
+                    'Cassidy',
+                    'Echo',
+                    'Genji',
+                    'Hanzo',
+                    'Junkrat',
+                    'Mei',
+                    'Phara',
+                    'Reaper',
+                    'Soldier: 76',
+                    'Sojourn',
+                    'Sombra',
+                    'Symmetra',
+                    'Torbjorn',
+                    'Tracer',
+                    'Widowmaker']
 
         self.support = ['Ana',
-               'Baptiste',
-               'Brigitte',
-               'Lucio',
-               'Mercy',
-               'Moira',
-               'Zenyatta']
+                        'Baptiste',
+                        'Brigitte',
+                        'Lucio',
+                        'Mercy',
+                        'Moira',
+                        'Zenyatta']
 
         self.maps = {'Escort': self.escort, 'Hybrid': self.hybrid,
-            'Control': self.control, 'Push': self.push}
-        self.heroes = {'Tank': self.tank, 'DPS': self.dps, 'Support': self.support}
+                     'Control': self.control, 'Push': self.push}
+        self.heroes = {'Tank': self.tank,
+                       'DPS': self.dps, 'Support': self.support}
         self.results = ['Victory', 'Defeat', 'Draw']
 
     def displayAndPickFromTable(self, option_list: list) -> int:
@@ -94,7 +96,6 @@ class Menu:
     def userMenu(self):
         while True:
             menuSelection = self.displayAndPickFromTable(self.menuOptions)
-
             match menuSelection:
                 case 'Register Match':
                     self.registerMatch()
@@ -107,7 +108,8 @@ class Menu:
         selected_mode = self.displayAndPickFromTable(self.maps)
         selected_map = self.displayAndPickFromTable(self.maps[selected_mode])
         selected_role = self.displayAndPickFromTable(self.heroes)
-        selected_hero = self.displayAndPickFromTable(self.heroes[selected_role])
+        selected_hero = self.displayAndPickFromTable(
+            self.heroes[selected_role])
 
         print("{}-{}-{}-{}".format(selected_mode,
               selected_map, selected_role, selected_hero))
