@@ -44,7 +44,6 @@ class Menu:
         selectedMap = self.displayAndPickFromTable(ds.maps[selectedMode])
         selectedRole = self.displayAndPickFromTable(ds.heroes)
         selectedHero = self.displayAndPickFromTable(ds.heroes[selectedRole])
-        
 
         print("{}-{}-{}-{}".format(selectedMode, selectedMap, selectedRole, selectedHero))
         time.sleep(2)
