@@ -104,7 +104,7 @@ class Menu:
                     self.registerMatch()
                 case 'Exit':
                     print("Thank you for using this program!")
-                    exit(1)
+                    exit(0)
 
     # Make it possible to go back with backspace, or cancel with escape
     def registerMatch(self):
