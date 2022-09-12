@@ -1,16 +1,12 @@
 import os
 import time
 import msvcrt
-from tkinter import W
-from data import DataStructures as ds
-
 
 class Menu:
 
     def __init__(self):
         self.menuOptions = ['Register Match', 'Exit']
-
-    escort = ['Circuit Royal',
+        self.escort = ['Circuit Royal',
               'Dorado',
               'Havana',
               'Junkertown',
@@ -18,7 +14,7 @@ class Menu:
               'Route 66',
               'Gothenburg']
 
-    hybrid = ['Blizzard World',
+        self.hybrid = ['Blizzard World',
               'Eichenwalde',
               'Hollywood',
               'King\'s Row',
@@ -26,17 +22,17 @@ class Menu:
               'Numbani',
               'Paraiso']
 
-    control = ['Busan',
+        self.control = ['Busan',
                'Ilios',
                'Lijiang Tower',
                'Nepal',
                'Oasis']
 
-    push = ['Colosseo',
+        self.push = ['Colosseo',
             'New Queen Street',
             'Portugal']
 
-    tank = ['D.Va',
+        self.tank = ['D.Va',
             'Doomfist',
             'Junker Queen',
             'Orisa',
@@ -47,7 +43,7 @@ class Menu:
             'Wrecking Ball',
             'Zarya']
 
-    dps = ['Ashe',
+        self.dps = ['Ashe',
            'Bastion',
            'Cassidy',
            'Echo',
@@ -65,7 +61,7 @@ class Menu:
            'Tracer',
            'Widowmaker']
 
-    support = ['Ana',
+        self.support = ['Ana',
                'Baptiste',
                'Brigitte',
                'Lucio',
@@ -73,10 +69,10 @@ class Menu:
                'Moira',
                'Zenyatta']
 
-    maps = {'Escort': escort, 'Hybrid': hybrid,
-            'Control': control, 'Push': push}
-    heroes = {'Tank': tank, 'DPS': dps, 'Support': support}
-    results = ['Victory', 'Defeat', 'Draw']
+        self.maps = {'Escort': self.escort, 'Hybrid': self.hybrid,
+            'Control': self.control, 'Push': self.push}
+        self.heroes = {'Tank': self.tank, 'DPS': self.dps, 'Support': self.support}
+        self.results = ['Victory', 'Defeat', 'Draw']
 
     def displayAndPickFromTable(self, optionList: list) -> int:
         os.system('cls')
@@ -108,10 +104,10 @@ class Menu:
 
     # Make it possible to go back with backspace, or cancel with escape
     def registerMatch(self):
-        selectedMode = self.displayAndPickFromTable(ds.maps)
-        selectedMap = self.displayAndPickFromTable(ds.maps[selectedMode])
-        selectedRole = self.displayAndPickFromTable(ds.heroes)
-        selectedHero = self.displayAndPickFromTable(ds.heroes[selectedRole])
+        selectedMode = self.displayAndPickFromTable(self.maps)
+        selectedMap = self.displayAndPickFromTable(self.maps[selectedMode])
+        selectedRole = self.displayAndPickFromTable(self.heroes)
+        selectedHero = self.displayAndPickFromTable(self.heroes[selectedRole])
 
         print("{}-{}-{}-{}".format(selectedMode,
               selectedMap, selectedRole, selectedHero))
