@@ -2,7 +2,6 @@ import os
 import time
 import msvcrt
 
-
 class Menu:
 
     def __init__(self):
