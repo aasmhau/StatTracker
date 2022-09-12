@@ -1,4 +1,4 @@
-''' A class with functions: 
+''' A class with functions:
     - display_and_pick_from_table
     - user_menu
     - register_match
