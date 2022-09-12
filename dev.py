@@ -3,20 +3,16 @@
     - user_menu
     - register_match
 '''
-
-
-
 import os
 import time
 import sys
 import msvcrt
 
 
-
 class Menu:
     ''' Class that stores data and lets you register a match'''
-     # pylint: disable=too-many-instance-attributes
-     # Need 11 for this class
+    # pylint: disable=too-many-instance-attributes
+    # Need 11 for this class
 
     def __init__(self):
         self.menu_options = ['Register Match', 'Exit']
