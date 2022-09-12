@@ -1,11 +1,22 @@
+''' A class with functions: 
+    - display_and_pick_from_table
+    - user_menu
+    - register_match
+'''
+
+
+
 import os
 import time
 import sys
 import msvcrt
 
 
+
 class Menu:
     ''' Class that stores data and lets you register a match'''
+     # pylint: disable=too-many-instance-attributes
+     # Need 11 for this class
 
     def __init__(self):
         self.menu_options = ['Register Match', 'Exit']
@@ -86,7 +97,7 @@ class Menu:
         print("Esc  -  Cancel")
         for option in option_list:
             current_options.append(option)
-            print("{}  -  {}".format(chr(ascii_int), option))
+            print(f"{chr(ascii_int)}  -  {option}")
             ascii_int += 1
 
         selection = int(ord(msvcrt.getch())) - 97
